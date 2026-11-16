@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "excel-vba-exporter"
+version = "0.1.0"
+description = "Windows向けExcel VBAソースエクスポートツール"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pywin32>=306; sys_platform == 'win32'",
+    "tkinterdnd2>=0.4.2,<0.5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["excel_vba_exporter"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "D"]
+ignore = ["D203", "D213", "D400", "D415"]
